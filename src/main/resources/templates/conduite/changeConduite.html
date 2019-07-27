@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<meta charset="utf-8" />
+<title>Layout</title>
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+
+		<div class="container" style="margin-left: 110px;">
+			<div class="col-md-8" style="padding-left: 30px;">
+				<table class="table table-hover">
+					<tr>
+						<td>Etudiant :</td>
+						<td th:text="${insc.etudiant.nom+' '+insc.etudiant.prenom}"></td>
+					</tr>
+
+					<tr>
+						<td>Antenne :</td>
+						<td th:text="${insc.classe.antenne.lib}"></td>
+					</tr>
+					<tr>
+						<td>Filière :</td>
+						<td th:text="${insc.classe.filiere.lib}"></td>
+					</tr>
+					<tr>
+						<td>Niveau :</td>
+						<td th:text="${insc.classe.niveau.lib}"></td>
+					</tr>
+				</table>
+			</div>
+			<h4 style="padding-left: 30px;">Formulaire de la nouvelle classe</h4>
+			<div class="col-md-8" style="padding-left: 30px;">
+
+				<div class="panel panel-default">
+					<div class="panel-heading"></div>
+					<div class="panel-body">
+						<form class="form-group" action="#"
+							th:action="@{/conduite/changeConduite}" method="get">
+							<div class="row">
+
+								<div class="form-group col-md-12">
+									<input th:type="hidden" name="idinsc" id="idinsc" th:value="${insc.id}" />
+								</div>
+								<div class="form-group col-md-12">
+									<input th:type="hidden" name="idexa" id="idexa" th:value="${idexa}" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<select id="idcond" class="form-control" name="idcond">
+										<option th:value="0">====Conduites====</option>
+										<option th:value="1">Indiscipline</option>
+										<option th:value="2">Indiscipline et Fraude</option>
+										<option th:value="3">Fraude</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-primary">Valider</button>
+									</div>
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

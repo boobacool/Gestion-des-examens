@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Gestion de notes</title>
+<meta charset="utf-8"/>
+
+</head>
+
+<body th:fragment="navigation">
+
+  <section class="header-top">
+		<div class="container box_1170">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<a href="index.html" class="logo">
+						<img src="../static/images/logotest1.PNG" th:src="@{/images/logotest1.PNG}" height="100px" width="500px">
+					</a>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 search-trigger">
+					<a href="#" class="search">
+						<i class="lnr lnr-magnifier" id="search"></i></a>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<header id="header">
+		<div class="container box_1170 main-menu">
+			<div class="row align-items-center justify-content-center d-flex">
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a th:href="@{/}">Accueil</a></li>
+						<li><a th:href="@{/conduite/formulaire}">Conduite Etudiant</a></li>
+						<li><a th:href="@{/epreuve/epreuves}">Epreuves</a></li>
+						<li><a th:href="@{/examen/examens}">Examens</a></li>
+						<li><a th:href="@{/note/formulaire}">Notes</a></li>
+						<li><a th:href="@{/exaepreuve/formulaire}">Examens-Epreuves</a></li>
+						<li class="menu-has-children"><a href="">Imprimer</a>
+							<ul>
+								<li><a th:href="@{/generatePDF/formulaire}">Resultat Par Classe</a></li>					
+							</ul>
+						</li>
+						<li class="menu-has-children"><a href="">Autres</a>
+							<ul>
+							    <li><a th:href="@{/etudiant/formulaire}">Change Classe</a></li>
+							    <li><a th:href="@{/exaepreuve/supprimerMatiere}">Supprimer Matière</a></li>
+								<li><a th:href="@{/conduite/formulaire}">Conduite Etudiant</a></li>
+								<li><a th:href="@{/etudiant/formulaireAjout}">Ajouter Etudiant</a></li>
+								<li><a th:href="@{/#}">Liste Années</a></li>
+								<li><a th:href="@{/#}">Liste Niveaux</a></li>
+								<li><a th:href="@{/#}">Liste Filières</a></li>
+													
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		
+	</header>
+</body>
+
+</html>

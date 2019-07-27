@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+<meta charset="utf-8"/>
+<title>Layout</title>
+
+</head>
+
+<body>
+
+
+  <div layout:fragment="content">
+  
+  <div class="container" style="margin-left: 110px;">
+  
+ <h3 th:text="${'LES MATIERES '+cl.lib+' '+ant.lib+' '+exa.lib+' '+an.lib}"></h3>
+					
+			<div class="col-md-8" style="padding-left: 30px;">
+					
+				<div class="panel panel-default">
+					<div class="panel-heading"></div>
+					<div class="panel-body">
+	<form class="form-group" action="#" th:object="${listep}"  th:action="@{/exaepreuve/save}" method="post">
+				
+				<div class="row">
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idant" th:value="${ant.id}" id="idant"/>
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idan" th:value="${an.id}" id="idan" />
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idcl" id="idcl" th:value="${cl.id}" />
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idexa" id="idexa" th:value="${exa.id}" />
+				 </div>
+				</div>
+				
+				<div>								
+          <ul>
+            <li th:each="item, stat : *{listeEP}">
+                <div class="row">
+                   <div class="form-group col-md-9">
+                    <select class="form-control" id="idm" th:field="*{listeEP[__${stat.index}__].epreuve.id}" th:id="${'matiere-'+stat.index}">
+                    <option th:value="0" th:text="${'====Matière '+(stat.index+1)+'===='}"></option>
+                    <option th:each="c : ${epreuves}" th:value="${c.id}" th:text="${c.lib}"></option>
+                    </select>                  
+                    </div>
+							<div class="form-group col-md-3">
+									<input type="number" class="form-control" id="coefficient" th:field="*{listeEP[__${stat.index}__].coef}" placeholder="Coefficient" />
+							</div>
+							</div>
+            </li>
+        </ul>
+              </div>                
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-12">
+											<button type="submit"  class="btn btn-primary">Ajouter</button>
+											<a href="#" th:href="@{/contrat/rajoutercont}" class="btn btn-danger" role="button">Annuler</a>
+										</div>
+
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+  </div>
+  
+  
+</div>
+</body>
+</html>

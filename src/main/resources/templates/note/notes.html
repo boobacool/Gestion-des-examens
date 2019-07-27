@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+<meta charset="utf-8"/>
+<title>Layout</title>
+
+</head>
+
+<body>
+
+
+  <div layout:fragment="content">
+  
+  <div class="container" style="margin-left: 110px;">
+  
+ <h3 th:text="${cl.lib+' '+ant.lib+' '+exa.lib+' '+an.lib}"></h3>
+ <h3 th:text="${'Matière : '+exaepreuve.epreuve.lib}"></h3>
+					
+			<div class="col-md-8" style="padding-left: 30px;">
+					
+				<div class="panel panel-default">
+					<div class="panel-heading"></div>
+					<div class="panel-body">
+	<form class="form-group" action="#" th:object="${insNoteListes}"  th:action="@{/note/save}" method="post">
+				
+				<div class="row">
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idant" th:value="${ant.id}" id="idant"/>
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idan" th:value="${an.id}" id="idan" />
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idcl" id="idcl" th:value="${cl.id}" />
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idexa" id="idexa" th:value="${exa.id}" />
+				 </div>
+				 <div class="form-group col-md-1">
+					<input th:type="hidden" name="idexaep" id="idexaep" th:value="${exaepreuve.id}" />
+				 </div>
+				</div>
+				
+												
+          <ul>
+            <li th:each="item, stat : *{listeInsNotes}">
+                <div class="row">
+                   <div class="form-group col-md-7">
+                    <h4 id="idnp" th:text="*{listeInsNotes[__${stat.index}__].inscription.etudiant.nom+' '+listeInsNotes[__${stat.index}__].inscription.etudiant.prenom}"></h4>
+                    </div>
+                    <div class="form-group col-md-2">
+                    <input type="hidden" th:field="*{listeInsNotes[__${stat.index}__].inscription.id}"/>
+                    </div>
+                    <div class="form-group col-md-2">
+                     <input id="idnote" th:field="*{listeInsNotes[__${stat.index}__].note}" >
+                    </div>
+                    <div class="form-group col-md-1">
+                    <input type="hidden" th:field="*{listeInsNotes[__${stat.index}__].id}"/>
+                    </div>
+                                   
+                    </div>
+							
+							
+                         </li>
+                           </ul>
+                            </div>                
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-12">
+											<button type="submit"  class="btn btn-primary">Valider</button>
+											<a href="#" th:href="@{/contrat/rajoutercont}" class="btn btn-danger" role="button">Annuler</a>
+										</div>
+
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+  </div>
+  
+  
+</div>
+</body>
+</html>

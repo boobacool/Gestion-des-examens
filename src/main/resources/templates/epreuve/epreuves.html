@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+<meta charset="utf-8"/>
+<title>Layout</title>
+
+</head>
+
+<body>
+
+
+  <div layout:fragment="content">
+  
+  <div class="container" style="margin-left: 110px;">
+  <button class="btn btn-success nBtn">Nouveau</button>
+   <div class="card">
+   
+   <div class="myForm">
+    <form th:action="@{/epreuve/save}" method="post" th:object="${epreuve}">
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+       <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou Modifier Epreuve</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+          <div class="form-group">
+             <input type="hidden"  class="form-control"  id="id" name="id">
+          </div>
+          <div class="form-group">
+            <label for="lib" class="col-form-label">Libellé:</label>
+           <input type="text"  class="form-control" id="lib" name="lib">
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Ajouter/Modifier">
+      </div>
+    </div>
+  </div>
+</div>
+   </form>
+   </div>
+   
+     <div class="card-block" th:if="!${#lists.isEmpty(listeEpreuves.content)}">
+        <table class="table table-hover">
+           <thead>
+			<tr>
+			<th>ID</th>
+			<th>Epreuves</th>
+			<th>Actions</th>
+			</tr>
+			</thead>
+           <tbody>
+			<tr th:each="c:${listeEpreuves.content}">
+			<td th:text="${c.id}"></td>
+			<td th:text="${c.lib}"></td>
+			<td><a th:href="@{findOne/(id=${c.id})}" class="btn btn-primary eBtn btn-sm">Modifier</a>
+			<a th:href="@{delete/(id=${c.id})}" class="btn btn-danger dBtn btn-sm">Supprimer</a></td>
+			</tr>
+		</tbody>
+       </table>
+     <hr />
+
+	<ul class="nav nav-pills">
+	<li class="nav-item" th:each="i:${pages}" th:class="${i==pageEnCours}?active:''"><a th:href="@{/epreuve/epreuves(page=${i})}" th:text="${i+1}"class="nav-link"></a></li>
+	</ul>	
+     </div>
+     <div th:if="${#lists.isEmpty(listeEpreuves.content)}" class="text-center text-danger">
+       La liste est vide
+     </div>
+   
+   </div>
+  
+  </div>
+  
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="alert alert-danger">
+         Etes-vous sure ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="" class="btn btn-danger" id="delRef">Supprimer</a>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
+</body>
+</html>

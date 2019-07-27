@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+<meta charset="utf-8"/>
+<title>Layout</title>
+
+</head>
+
+<body>
+
+
+  <div layout:fragment="content">
+  
+  <div class="container" style="margin-left: 110px;">
+  
+  <h1 style="padding-left: 30px;">Formulaire Etudiant</h1>
+			<div class="col-md-8" style="padding-left: 30px;">
+					
+				<div class="panel panel-default">
+					<div class="panel-heading"></div>
+					<div class="panel-body">
+						<form class="form-group" action="#"  th:action="@{/etudiant/findList}" method="get">
+													
+							<div class="row">
+                                <div class="form-group col-md-12">
+								<select  id="ida" class="form-control" name="ida">
+								<option  th:value="0">====Annees====</option>
+								<option th:each="c : ${listeAnnees}" th:value="${c.id}" th:text="${c.lib}"></option>     
+                                </select>															
+								</div>
+							</div>
+                           
+							<div class="row">
+                                <div class="form-group col-md-12">
+								<select  class="form-control" id="idant" name="idant">
+								<option  th:value="0">====Antennes====</option>
+                                <option th:each="c : ${listeAntennes}" th:value="${c.id}" th:text="${c.lib}"></option>
+                               </select>
+															
+								</div>
+							</div>
+			
+							<div class="row">
+                                <div class="form-group col-md-12">
+								<select  id="idfil" class="form-control" name="idfil">
+								<option  th:value="0">====Filières====</option>
+								<option th:each="c : ${listeFilieres}" th:value="${c.id}" th:text="${c.lib}"></option>
+                               
+                                </select>
+															
+								</div>
+							</div>
+							
+							<div class="row">
+                                <div class="form-group col-md-12">
+								<select  id="idniv" class="form-control" name="idniv">
+								<option  th:value="0">====Niveaux====</option>
+								<option th:each="c : ${listeNiveaux}" th:value="${c.id}" th:text="${c.lib}"></option>
+                               
+                                </select>
+															
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-12">
+											<button type="submit"  class="btn btn-primary">Valider</button>
+											<a href="#" class="btn btn-danger" role="button">Annuler</a>
+										</div>
+
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+  </div>
+  		
+</div>
+</body>
+</html>
